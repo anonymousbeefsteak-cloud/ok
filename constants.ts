@@ -1,3 +1,5 @@
-﻿
 export const SHIPPING_FEE = 30;
-export const GOOGLE_SHEETS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSbm2_MC7RFB8YBh7XEJX7X9-Qp1i6_wvd1lzayxpEP2dF-Z99oHkD__amudmkrg/exec';
+
+// FIX: Add missing GOOGLE_SHEETS_SCRIPT_URL constant.
+// Replace with your actual Google Apps Script URL.
+export const GOOGLE_SHEETS_SCRIPT_URL = '';
