@@ -1,8 +1,8 @@
-﻿
+
 import React, { useState, useEffect, useCallback } from 'react';
 
 import { View } from './types';
-import type { Restaurant, MenuItem, CartItem, ConfirmedOrder, OrderDetails, AlertState, SheetOrderData } from './types';
+import type { Restaurant, MenuItem, CartItem, ConfirmedOrder, OrderDetails, AlertState } from './types';
 import { SHIPPING_FEE } from './constants';
 import { generateRestaurantData, generateMenuForRestaurant, processOrder } from './services/geminiService';
 import { saveOrder } from './services/sheetService';
@@ -113,19 +113,8 @@ const App: React.FC = () => {
                 shippingFee: SHIPPING_FEE,
                 total,
             };
-            
-            const sheetData: SheetOrderData = {
-                ...details,
-                orderNumber,
-                items: cart.map(item => `${item.name} x${item.quantity}`).join(', '),
-                subtotal,
-                shippingFee: SHIPPING_FEE,
-                total,
-                orderTime: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
-            };
 
-            const saveResult = await saveOrder(sheetData);
-
+            const saveResult = await saveOrder(newConfirmedOrder);
             if (!saveResult.success) {
                 throw new Error(saveResult.message || '無法將訂單儲存至後端系統。');
             }
